@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--==================== FAVICON ====================-->
-        <link rel="icon" href="assets/img/favicon.svg">
+        <link rel="icon" href="assets/img/favicon.ico">
 
         <!--==================== UNICONS ====================-->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -22,14 +22,16 @@
         <!--==================== HEADER ====================-->
         <header class="header" id="header">
             <nav class="nav container">
-                <a href="#" class="nav__logo">Abhijeet P. Rojatkar</a>
+                <a href="#" class="nav__logo">Abhijeet Rojatkar</a>
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list grid">
-                        <li class="nav__item">
+                        
+                        <!-- <li class="nav__item">
                             <a href="#home" class="nav__link active-link">
                                 <i class="uil uil-estate nav__icon"></i>Home
                             </a>
-                        </li>
+                        </li> -->
+                        
                         <li class="nav__item">
                             <a href="#about" class="nav__link">
                                 <i class="uil uil-user nav__icon"></i>About
@@ -40,11 +42,19 @@
                                 <i class="uil uil-scenery nav__icon"></i>Portfolio
                             </a>
                         </li>
+
+                                <!-- **************** NEED to update **************** -->
                         <li class="nav__item">
-                            <a href="" target="_blank" class="nav__link">
-                                <i class="uil uil-document-layout-left nav__icon"></i>Blog Link Soon
+                            <a href="https://abhi1045.github.io/blog" target="_blank" class="nav__link">
+                                <i class="uil uil-document-layout-left nav__icon"></i>Blog
                             </a>
                         </li>
+                        <li class="nav__item">
+                            <a href="" target="_blank" class="nav__link">
+                                <i class="uil uil-document-layout-left nav__icon"></i>Resume
+                            </a>
+                        </li>
+                                <!-- **************** NEED to update **************** -->
                     </ul>
                     <i class="uil uil-times nav__close nav__icon" id="nav-close"></i>
                 </div>
@@ -79,7 +89,19 @@
                             </a>
                         </div>
                         <div class="home__img">
-                            <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg class="home__blob" viewBox="70 20 370 435" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%">
+                                <mask id="mask0" mask-type="alpha">
+                                    <path d="M430.5,309Q413,368,365.5,413.5Q318,459,255,443.5Q192,428,123,410Q54,392,74,321Q94,250,84,186Q74,122,124,69Q174,16,248,23Q322,30,362.5,84.5Q403,139,425.5,194.5Q448,250,430.5,309Z" />
+                                </mask>
+                                <g mask="url(#mask0)">
+                                    <path d="M430.5,309Q413,368,365.5,413.5Q318,459,255,443.5Q192,428,123,410Q54,392,74,321Q94,250,84,186Q74,122,124,69Q174,16,248,23Q322,30,362.5,84.5Q403,139,425.5,194.5Q448,250,430.5,309Z" />
+
+                                    <image class="home__blob-img" x='30' y='04' style="transform: scale(2.3);" xlink:href="assets/img/profile.jpeg"/>
+                                </g>
+                            </svg>
+                        </div>
+
+                            <!-- <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <mask id="mask0" mask-type="alpha">
                                     <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547
                                     130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775
@@ -95,13 +117,13 @@
                                     <image class="home__blob-img" x='-6' y='0' style="transform: scale(1.3);" xlink:href="assets/img/profile.jpeg"/>
                                 </g>
                             </svg>
-                        </div>
+                        </div> -->
 
                         <div class="home__data">
                             <h1 class="home__title">Hi, I'm Abhijeet</h1>
-                            <h3 class="home__subtitle">Software Engineer | Machine Learning Enthusiast </h3>
+                            <h3 class="home__subtitle">Software Engineer || Machine Learning Enthusiast </h3>
                             <p class="home__description">
-                                I'm a 24 years old pursuing Electrical Engineering at NIT Surathkal and machine learnig engineer
+                                I'm a student pursuing Masters at National Institute of Technology Karantaka, Surathkal (NITK) and Machine Learning Engineer.
                             </p>
                             <a href="#contact" class="button button--flex">
                                 Contact Me <i class="uil uil-message button__icon"></i>
@@ -129,9 +151,9 @@
 
                     <div class="about__data">
                         <p class="about__description">
-                            Hi! I'm a Electrical Engineering Postgraduate Student at NIT Surathkal
+                            Hi! I'm a Electrical Engineering Postgraduate Student at NITK.
                             <br /><br />
-                            Passionate about technology, computing, algorithms, data science and, above all, artificial intelligence.
+                            Passionate about Technology, Computing, Algorithms, Data Science and, above all, Artificial Intelligence.
                             I live the philosophy of always trying to learn something new, whether through mistakes or successes, good or bad experiences, so that I can develop my maximum potential and find the best version of me.
                             <br /><br />
                             I also have a blog where I post all the topics I study. Basically it's a place where all my knowledge (of relevant topics) is.
@@ -167,10 +189,67 @@
                 </div>
             </section>
 
+
+            <!--==================== SKILLS ======================-->
+
+
+            <!--==================== QUALIFICATION ====================-->
+            <!-- <section class="qualification section bd-container">
+                <span class="section-subtitle"> Experience and education</span>
+                <h2 class="section-title">Qualification</h2>
+
+                <div class="qualification_container bd-grid">
+                    <div class="qualification_content">
+                        <h2 class="qualification_title">
+                            <i class= 'bx bx-briefcase-alt qualification_title-icon'></i>
+                            Work Experience
+                        </h2>
+
+                    <div class="bd-grid">
+                        <div class="qualification__data">
+                            <h3 class= "qualification__area"> Senior Front End Developer</h3>
+
+                            <div class="qualification__box">
+                                <span class="qualificaton__work">
+                                    <i class= 'bx bx-briefcase-alt qualification__icon'></i>
+                                    Something
+                                </span>
+                                <span class="qualificaton__work">
+                                    <i class= 'bx bx-calendar-alt qualification__icon'></i>
+                                    Something Date
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section> -->
+
+            <div class="qualification__sections">
+                        <!--==================== QUALIFICATION CONTENT 1 ====================-->
+                        <div class="qualification__content qualification__active" data-content id="education">
+                            <!--==================== QUALIFICATION 1 ====================-->
+                            <div class="qualification__data">
+                                <div>
+                                    <h3 class="qualification__title">Junior College</h3>
+                                    <span class="qualification__subtitle">Vidyabharati Junior College</span>
+                                    <div class="qualification__calendar">
+                                       <i class="uil uil-calendar-alt"></i>
+                                       2013 - 2015
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="qualification__rounder"></span>
+                                    <span class="qualification__line"></span>
+                                </div>
+                            </div>
+                        </div>
+                </div>>
+
             <!--==================== PORTFOLIO ====================-->
             <section class="portfolio section" id="portfolio">
                 <h2 class="section__title">Portfolio</h2>
-                <span class="section__subtitle"><a href="#">Click here</a> to see all.</span>
+                <span class="section__subtitle"><a href="https://github.com/abhi1045" target = "_blank">Click here</a> to see all.</span>
 
                 <div class="portfolio__container container swiper-container">
                     <div class="swiper-wrapper">
@@ -238,23 +317,27 @@
                         </div>
 
                         <div class="contact__information">
-                            <a href="https://in.linkedin.com/in/abhijeet-rojatkar-73a547147" target="_blank"><i class="uil uil-linkedin contact__icon"></i></a>
+                            <a href="https://in.linkedin.com/in/abhi1045" target="_blank"><i class="uil uil-linkedin contact__icon"></i></a>
                             <div>
                                <h3 class="contact__title">LinkedIn</h3>
-                               <a href="https://www.linkedin.com/in/ahayasic/" target="_blank"><span class="contact__subtitle">https://in.linkedin.com/in/abhijeet-rojatkar-73a547147</span></a>
+                               <a href="https://in.linkedin.com/in/abhi1045" target="_blank"><span class="contact__subtitle">Abhijeet Rojatkar</span></a>
                             </div>
                         </div>
 
                         <div class="contact__information">
-                            <a href="https://github/ahayasic/" target="_blank"><i class="uil uil-github contact__icon"></i></a>
+                            <a href="https://github.com/abhi1045" target="_blank">
+                                <i class="uil uil-github contact__icon"></i></a>
                             <div>
                                <h3 class="contact__title">GitHub</h3>
-                               <a href="/" target="_blank"><span class="contact__subtitle">@To do soon</span></a>
+                               <a href="https://github.com/abhi1045" target="_blank">
+                                <span class="contact__subtitle">Abhijeet Rojatkar</span></a>
                             </div>
                         </div>
 
                         <div class="contact__information">
-                            <a href="mailto:hayasi.ahs@gmail.com"><i class="uil uil-envelope-alt contact__icon"></i></a>
+                            <a href="mailto:abhijeetmagicworld@gmail.com">
+                                <i class="uil uil-envelope-edit contact__icon"></i></a>
+                                <!-- <i class="uil uil-envelope-alt contact__icon"></i></a> -->
                             <div>
                                <h3 class="contact__title">Email</h3>
                                <a href="mailto:abhijeetmagicworld@gmail.com"><span class="contact__subtitle">abhijeetmagicworld@gmail.com</span></a>
@@ -313,18 +396,28 @@
                     </div>
 
                     <ul class="footer__links">
-                        <li>
+                        
+                        <!-- <li>
                             <a href="#home" class="footer__link">Home</a>
-                        </li>
+                        </li> -->
+                        
                         <li>
                             <a href="#about" class="footer__link">About</a>
                         </li>
                         <li>
                             <a href="#portfolio" class="footer__link">Portfolio</a>
                         </li>
+                        
+                        <!-- **************** NEED to update **************** -->
                         <li>
-                            <a href="" target="_blank" class="footer__link">Blog Link Soon</a>
+                            <a href="" target="_blank" class="footer__link">Blog</a>
                         </li>
+
+                        <li>
+                            <a href="" target="_blank" class="footer__link">Resume</a>
+                        </li>
+                        <!-- **************** NEED to update **************** -->
+
                     </ul>
 
                     <div class="footer__socials">
@@ -341,7 +434,7 @@
                     Made with <span style="color: #e25555;">&hearts;</span> by Abhijeet
                     Based on <a href="https://github.com/bedimcode/responsive-portfolio-website-Alexa" target="_blank">Responsive Personal Website Alexa</a> by <a href=" https://github.com/bedimcode" target="_blank">Bedimcode</a>
                     <br>
-                    Copyright &#169; 2021 Abhijeet Pandurang Rojatkar. All rights reserved.
+                    Copyright &#169; 2021 Abhijeet Rojatkar. All rights reserved.
                 </p>
             </div>
         </footer>
