@@ -31,43 +31,130 @@ function linkAction(){
 }
 navLink.forEach(n => n.addEventListener('click', linkAction))
 
-/*==================== ACCORDION SKILLS ====================*/
-const skillsContent = document.getElementsByClassName('skills__content'),
-    skillsHeader = document.querySelectorAll('.skills__header')
+/*==================== QUALIFICATION TIMELINE ====================*/
+/* Places each block against a shared time axis so its height matches how
+   long that role or degree lasted. Dates come from the data-start /
+   data-end attributes in the markup ("YYYY-MM", or "present").
+   The axis spans only the columns currently shown, so hiding a column
+   shrinks the timeline to the remaining dates. */
+const timeline = document.querySelector('.qualification__sections')
+let renderQualificationTimeline = () => {}
 
-function toggleSkills() {
-    let itemClass = this.parentNode.className
+if (timeline) {
+    const axis = timeline.querySelector('.qualification__axis')
+    const YEAR_MS = 365.25 * 24 * 60 * 60 * 1000
+    const PX_PER_YEAR = 88
+    /* Two labels closer than this on screen get merged into one */
+    const MIN_LABEL_GAP_PX = 18
+    const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
-    for(i = 0; i < skillsContent.length; i++) {
-        skillsContent[i].className = 'skills__content skills__close'
+    const toDate = (value) => {
+        if (!value || value === 'present') return new Date()
+        const [year, month] = value.split('-').map(Number)
+        if (!year) return new Date()
+        return new Date(year, (month || 1) - 1, 1)
     }
 
-    if(itemClass === 'skills__content skills__close') {
-        this.parentNode.className = 'skills__content skills__open'
+    const shortYear = (date) => "'" + String(date.getFullYear()).slice(-2)
+
+    const formatRange = (from, to) => {
+        const start = new Date(from)
+        const end = new Date(to)
+
+        if (from === to) {
+            return MONTHS[start.getMonth()] + ' ' + shortYear(start)
+        }
+        if (start.getFullYear() === end.getFullYear()) {
+            return MONTHS[start.getMonth()] + '-' + MONTHS[end.getMonth()] + ' ' + shortYear(start)
+        }
+        return MONTHS[start.getMonth()] + ' ' + shortYear(start) +
+            '-' + MONTHS[end.getMonth()] + ' ' + shortYear(end)
     }
+
+    renderQualificationTimeline = () => {
+        const visible = timeline.querySelectorAll(
+            '.qualification__active[data-content] .qualification__block'
+        )
+        const spans = Array.from(visible).map(block => ({
+            block,
+            start: toDate(block.dataset.start).getTime(),
+            end: toDate(block.dataset.end).getTime()
+        }))
+
+        if (axis) {
+            while (axis.firstChild) axis.removeChild(axis.firstChild)
+        }
+
+        timeline.classList.toggle('qualification__sections--empty', spans.length === 0)
+
+        if (!spans.length) {
+            timeline.style.setProperty('--timeline-height', '0px')
+            return
+        }
+
+        /* Newest at the top, bounded by the visible blocks only */
+        const top = Math.max(...spans.map(span => span.end))
+        const bottom = Math.min(...spans.map(span => span.start))
+        const total = top - bottom
+
+        timeline.style.setProperty(
+            '--timeline-height',
+            Math.round((total / YEAR_MS) * PX_PER_YEAR) + 'px'
+        )
+
+        spans.forEach(({ block, start, end }) => {
+            block.style.setProperty('--block-top', ((top - end) / total) * 100 + '%')
+            block.style.setProperty('--block-height', ((end - start) / total) * 100 + '%')
+        })
+
+        /* Label the axis with the start/end of each visible block. Dates that
+           would land on top of each other are merged into one range label. */
+        if (axis) {
+            const mergeWithin = (MIN_LABEL_GAP_PX / PX_PER_YEAR) * YEAR_MS
+            const points = Array.from(
+                new Set(spans.flatMap(span => [span.start, span.end]))
+            ).sort((a, b) => b - a)
+
+            const groups = []
+            points.forEach(time => {
+                const current = groups[groups.length - 1]
+                if (current && current[current.length - 1] - time <= mergeWithin) {
+                    current.push(time)
+                } else {
+                    groups.push([time])
+                }
+            })
+
+            groups.forEach(group => {
+                const earliest = group[group.length - 1]
+                const latest = group[0]
+                const tick = document.createElement('span')
+                tick.className = 'qualification__tick'
+                tick.textContent = formatRange(earliest, latest)
+                tick.style.setProperty(
+                    '--tick-top',
+                    ((top - (earliest + latest) / 2) / total) * 100 + '%'
+                )
+                axis.appendChild(tick)
+            })
+        }
+    }
+
+    renderQualificationTimeline()
 }
 
-skillsHeader.forEach((el) =>{
-    el.addEventListener('click', toggleSkills)
-})
-
-/*==================== QUALIFICATION TABS ====================*/
-const tabs = document.querySelectorAll('[data-target]'),
-    tabContents = document.querySelectorAll('[data-content]')
+/*==================== QUALIFICATION TOGGLE ====================*/
+const tabs = document.querySelectorAll('[data-target]')
 
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
         const target = document.querySelector(tab.dataset.target)
+        if (!target) return
 
-        tabContents.forEach(tabContent => {
-            tabContent.classList.remove('qualification__active')
-        })
-        target.classList.add('qualification__active')
-
-        tabs.forEach(tab => {
-            tab.classList.remove('qualification__active')
-        })
-        tab.classList.add('qualification__active')
+        target.classList.toggle('qualification__active')
+        tab.classList.toggle('qualification__active')
+        renderQualificationTimeline()
     })
 })
 
